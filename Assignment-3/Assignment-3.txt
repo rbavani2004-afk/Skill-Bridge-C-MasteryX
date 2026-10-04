@@ -1,0 +1,106 @@
+1. Prime Number Using Function:
+
+#include <stdio.h>
+
+int isPrime(int n)
+{
+    int i;
+
+    if (n <= 1)
+        return 0;
+
+    for (i = 2; i * i <= n; i++)
+    {
+        if (n % i == 0)
+            return 0;
+    }
+
+    return 1;
+}
+
+int main()
+{
+    int n;
+
+    printf("Enter a positive integer: ");
+    scanf("%d", &n);
+
+    if (isPrime(n))
+        printf("%d is a Prime Number.\n", n);
+    else
+        printf("%d is not a Prime Number.\n", n);
+
+    return 0;
+}
+
+Output:
+Enter a positive integer: 17
+17 is a Prime Number.
+
+
+2. Count Occurrences of a Digit Using Recursion:
+
+#include <stdio.h>
+
+int countDigit(int n, int digit)
+{
+    if (n == 0)
+        return 0;
+
+    if (n % 10 == digit)
+        return 1 + countDigit(n / 10, digit);
+    else
+        return countDigit(n / 10, digit);
+}
+
+int main()
+{
+    int n, digit, count;
+
+    printf("Enter a positive integer: ");
+    scanf("%d", &n);
+
+    printf("Enter the digit to count: ");
+    scanf("%d", &digit);
+
+    count = countDigit(n, digit);
+
+    printf("The digit %d occurs %d time(s).\n", digit, count);
+
+    return 0;
+}
+
+Output:
+Enter a positive integer: 122333
+Enter the digit to count: 3
+The digit 3 occurs 3 time(s).
+
+3. Reverse Digits Using Recursion:
+
+#include <stdio.h>
+
+int reverseNumber(int n, int reverse)
+{
+    if (n == 0)
+        return reverse;
+
+    return reverseNumber(n / 10, reverse * 10 + n % 10);
+}
+
+int main()
+{
+    int n, reversed;
+
+    printf("Enter a positive integer: ");
+    scanf("%d", &n);
+
+    reversed = reverseNumber(n, 0);
+
+    printf("Reversed number: %d\n", reversed);
+
+    return 0;
+}
+
+Output:
+Enter a positive integer: 12345
+Reversed number: 54321
