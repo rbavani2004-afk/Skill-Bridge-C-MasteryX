@@ -1,0 +1,140 @@
+1. Longest Palindromic Substring:
+
+#include <stdio.h>
+#include <string.h>
+
+int isPalindrome(char str[], int start, int end)
+{
+    while (start < end)
+    {
+        if (str[start] != str[end])
+            return 0;
+
+        start++;
+        end--;
+    }
+
+    return 1;
+}
+
+int main()
+{
+    char str[100];
+    int i, j;
+    int maxLength = 1;
+    int startIndex = 0;
+    int length;
+
+    printf("Enter a string: ");
+    scanf("%s", str);
+
+    length = strlen(str);
+
+    for (i = 0; i < length; i++)
+    {
+        for (j = i; j < length; j++)
+        {
+            if (isPalindrome(str, i, j))
+            {
+                if (j - i + 1 > maxLength)
+                {
+                    maxLength = j - i + 1;
+                    startIndex = i;
+                }
+            }
+        }
+    }
+
+    printf("Longest Palindromic Substring: ");
+
+    for (i = startIndex; i < startIndex + maxLength; i++)
+    {
+        printf("%c", str[i]);
+    }
+
+    printf("\n");
+
+    return 0;
+}
+
+
+
+Output:
+Enter a string: babad
+Longest Palindromic Substring: bab
+
+
+2. First Non-Repeating Character:
+
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char str[100];
+    int frequency[256] = {0};
+    int i, found = 0;
+
+    printf("Enter a string: ");
+    scanf("%s", str);
+
+    for (i = 0; str[i] != '\0'; i++)
+    {
+        frequency[(unsigned char)str[i]]++;
+    }
+
+    for (i = 0; str[i] != '\0'; i++)
+    {
+        if (frequency[(unsigned char)str[i]] == 1)
+        {
+            printf("First Non-Repeating Character: %c\n", str[i]);
+            found = 1;
+            break;
+        }
+    }
+
+    if (found == 0)
+    {
+        printf("First Non-Repeating Character: -1\n");
+    }
+
+    return 0;
+}
+
+Output:
+Enter a string: swiss
+First Non-Repeating Character: w
+
+
+3. Remove Duplicates While Preserving Order:
+
+#include <stdio.h>
+
+int main()
+{
+    char str[100];
+    int visited[256] = {0};
+    int i;
+
+    printf("Enter a string: ");
+    scanf("%s", str);
+
+    printf("After removing duplicates: ");
+
+    for (i = 0; str[i] != '\0'; i++)
+    {
+        if (visited[(unsigned char)str[i]] == 0)
+        {
+            printf("%c", str[i]);
+            visited[(unsigned char)str[i]] = 1;
+        }
+    }
+
+    printf("\n");
+
+    return 0;
+}
+
+Output:
+Enter a string: programming
+After removing duplicates: progamin
